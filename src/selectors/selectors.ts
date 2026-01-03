@@ -12,7 +12,7 @@ const dergreesToRadians = (degrees: number): number => {
     return degrees * (pi/180);
 }
 
-const projectOnAxis = ({azimut, distance}: IMeasurement): IProjectionOnAxis => {
+export const projectOnAxis = ({azimut, distance}: IMeasurement): IProjectionOnAxis => {
     const azimutToRad = dergreesToRadians(azimut);
     const dx = distance * Math.cos(azimutToRad);
     const dy = distance * Math.sin(azimutToRad);

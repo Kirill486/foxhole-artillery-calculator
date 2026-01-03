@@ -1,6 +1,6 @@
 import { IMeasurement } from "../interfaces/domain";
 import { impactSlice } from "../store/impactSlice";
-import { ModalType } from "../store/modalSlice";
+import { modalSlice, ModalType } from "../store/modalSlice";
 import { artyMeasurementSlice, targetMeasurementSlice } from "../store/rootReducer";
 import { store } from "../store/store";
 
@@ -19,4 +19,6 @@ export const confirmMeasurement = (modalType: ModalType, measurement: IMeasureme
             break;
         }
     }
+
+    store.dispatch(modalSlice.actions.closeModal());
 }

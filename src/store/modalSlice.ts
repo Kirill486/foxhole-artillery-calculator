@@ -28,7 +28,7 @@ export const modalSlice = createSlice({
     name: 'modalSlice',
     initialState: initialModal,
     reducers: {
-        openModal: (state, {payload: {title, type}}: PayloadAction<IModalMeta>) => ({ ...state, type, title }),
+        openModal: (state, {payload: {title, type}}: PayloadAction<IModalMeta>) => ({ ...state, type, title, isOpen: true }),
         setAzimuit: (state, {payload: newAzimut}: PayloadAction<number>) => ({ ...state, azimut: newAzimut }),
         setDistance: (state, {payload: newDistance}: PayloadAction<number>) => ({ ...state, distance: newDistance }),
         closeModal: () => initialModal,
