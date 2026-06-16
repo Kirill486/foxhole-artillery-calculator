@@ -38,6 +38,14 @@ const ItemIcon: FC<{ itemId: string }> = ({ itemId }) => {
                     <path d="M34 31v-7h28v7" />
                 </svg>
             );
+        case "impact":
+            return (
+                <svg className="item-icon" viewBox="0 0 96 96" role="img" aria-label="Explosion">
+                    <path d="M48 10l7 22 20-12-11 21 23 5-23 8 12 20-21-10-7 22-8-22-20 11 11-21-22-7 22-6-12-21 21 12z" />
+                    <path d="M40 45l8-11 8 11 13 4-11 7-3 13-7-10-11 10 3-13-11-7z" className="item-icon-cutout" />
+                    <path d="M40 45l8-11 8 11 13 4-11 7-3 13-7-10-11 10 3-13-11-7z" />
+                </svg>
+            );
         default:
             return null;
     }
@@ -45,6 +53,9 @@ const ItemIcon: FC<{ itemId: string }> = ({ itemId }) => {
 
 export const ItemComponent: FC<IMeasurementProps> = ({
     itemId,
+    iconId = itemId,
+    label = itemId,
+    className = "",
     azimut,
     distance,
     onClick,
@@ -54,12 +65,12 @@ export const ItemComponent: FC<IMeasurementProps> = ({
     const { dx, dy } = projectOnAxis({azimut, distance});
     return (
         <div
-            className="item clickable"
+            className={`item clickable ${className}`.trim()}
             id={itemId}
             onClick={onClick}
         >
-            <ItemIcon itemId={itemId} />
-            <div>Target: {itemId}</div>
+            <ItemIcon itemId={iconId} />
+            <div>Target: {label}</div>
             {showMeasurement && (<div>Azimut: {azimut.toFixed(1)}</div>)}
             {showMeasurement && <div>Distance: {distance.toFixed(1)}</div>}
 

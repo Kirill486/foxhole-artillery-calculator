@@ -42,6 +42,56 @@
   left: 15%;
 }
 
+#impact-1 {
+  top: 6%;
+  left: 64%;
+}
+
+#impact-2 {
+  top: 36%;
+  left: 70%;
+}
+
+#impact-3 {
+  top: 42%;
+  left: 84%;
+}
+
+.impact .item-icon {
+  stroke: #6f341f;
+}
+
+.clear-impacts-button {
+  position: absolute;
+  top: 6%;
+  left: 80%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #8b6d5d;
+  border-radius: 4px;
+  background: #f5f1e6;
+  color: #5a2b1c;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.clear-impacts-button:hover {
+  background: #efe4d5;
+}
+
+.clear-impacts-button svg {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 #modal {
   position: fixed;
   inset: 0;

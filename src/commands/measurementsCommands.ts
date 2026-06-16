@@ -4,7 +4,7 @@ import { modalSlice, ModalType } from "../store/modalSlice";
 import { artyMeasurementSlice, targetMeasurementSlice } from "../store/rootReducer";
 import { store } from "../store/store";
 
-export const confirmMeasurement = (modalType: ModalType, measurement: IMeasurement) => {
+export const confirmMeasurement = (modalType: ModalType, measurement: IMeasurement, impactIndex?: number) => {
     switch(modalType) {
         case ModalType.arty: {
             store.dispatch(artyMeasurementSlice.actions.setState(measurement));
@@ -15,7 +15,11 @@ export const confirmMeasurement = (modalType: ModalType, measurement: IMeasureme
             break;
         }
         case ModalType.impact: {
-            store.dispatch(impactSlice.actions.impact(measurement));
+            if (impactIndex === undefined) {
+                store.dispatch(impactSlice.actions.impact(measurement));
+            } else {
+                store.dispatch(impactSlice.actions.setImpact({index: impactIndex, measurement}));
+            }
             break;
         }
     }

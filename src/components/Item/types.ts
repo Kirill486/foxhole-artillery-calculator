@@ -2,6 +2,9 @@ import { IMeasurement } from "../../interfaces/domain";
 
 export interface IMeasurementProps extends IMeasurement {
     itemId: string;
+    iconId?: string;
+    label?: string;
+    className?: string;
     onClick?: () => void;
     showMeasurement?: boolean;
     showProjection?: boolean;

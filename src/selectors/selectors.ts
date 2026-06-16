@@ -34,7 +34,8 @@ export const selectDirectionOnTarget: Selector<IMeasurement> = ({ arty, target, 
   const { dx: dxArty, dy: dyArty } = projectOnAxis(arty);
   const { dx: dxTarget, dy: dyTarget } = projectOnAxis(target);
 
-  const areThereImpacts = impacts.length > 0;
+  const filledImpacts = impacts.filter(isMeasurementSet);
+  const areThereImpacts = filledImpacts.length > 0;
 
   let dx: number;
   let dy: number;
@@ -43,7 +44,7 @@ export const selectDirectionOnTarget: Selector<IMeasurement> = ({ arty, target, 
     dx = dxTarget;
     dy = dyTarget;
   } else {
-    const impactsProjections = impacts.map(projectOnAxis);
+    const impactsProjections = filledImpacts.map(projectOnAxis);
 
     let dxSumm = 0;
     let dySumm = 0;

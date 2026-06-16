@@ -1,5 +1,5 @@
 import './App.css';
-import { Arty, Officer, Target } from './hoc/items';
+import { Arty, Impacts, Officer, Target } from './hoc/items';
 import { MeasurementModal } from './hoc/modal';
 
 function App() {
@@ -7,6 +7,7 @@ function App() {
     <div className="App">
       <Arty />
       <Target />
+      <Impacts />
       <Officer />
       <MeasurementModal />
     </div>

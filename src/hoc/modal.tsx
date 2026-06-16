@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { HOC, useAppSelector } from "../interfaces/system";
-import { selectModalAzimut, selectModalDistance, selectModalIsOpen, selectModalTitle, selectModalType } from "../selectors/modalSelectors";
+import { selectModalAzimut, selectModalDistance, selectModalImpactIndex, selectModalIsOpen, selectModalTitle, selectModalType } from "../selectors/modalSelectors";
 import { modalSlice } from "../store/modalSlice";
 import { confirmMeasurement } from "../commands/measurementsCommands";
 
@@ -10,6 +10,7 @@ export const MeasurementModal: HOC = () => {
     const azimut = useAppSelector(selectModalAzimut);
     const distance = useAppSelector(selectModalDistance);
     const type = useAppSelector(selectModalType);
+    const impactIndex = useAppSelector(selectModalImpactIndex);
 
     const dispatch = useDispatch();
     return (
@@ -38,7 +39,7 @@ export const MeasurementModal: HOC = () => {
                         </div>
                         <div className="modal-actions">
                             <button className="modal-button secondary" onClick={() => dispatch(modalSlice.actions.closeModal())}>Cancel</button>
-                            <button className="modal-button primary" onClick={() => confirmMeasurement(type, { azimut, distance })}>Confirm</button>
+                            <button className="modal-button primary" onClick={() => confirmMeasurement(type, { azimut, distance }, impactIndex)}>Confirm</button>
                         </div>
                     </div>
                 </div>

@@ -6,3 +6,4 @@ export const selectModalDistance: Selector<number> = ({modal: {distance}}) => di
 export const selectModalType: Selector<ModalType> = ({modal: {type}}) => type;
 export const selectModalTitle: Selector<string> = ({modal: {title}}) => title;
 export const selectModalIsOpen: Selector<boolean> = ({modal: {isOpen}}) => isOpen;
+export const selectModalImpactIndex: Selector<number | undefined> = ({modal: {impactIndex}}) => impactIndex;

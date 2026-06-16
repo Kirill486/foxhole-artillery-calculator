@@ -10,6 +10,7 @@ export enum ModalType {
 interface IModalMeta {
     title: string,
     type: ModalType,
+    impactIndex?: number,
 }
 
 interface IModalState extends IMeasurement, IModalMeta {
@@ -22,13 +23,14 @@ const initialModal: IModalState = {
     azimut: 0,
     distance: 0,
     type: ModalType.target,
+    impactIndex: undefined,
 };
 
 export const modalSlice = createSlice({
     name: 'modalSlice',
     initialState: initialModal,
     reducers: {
-        openModal: (state, {payload: {title, type}}: PayloadAction<IModalMeta>) => ({ ...state, type, title, isOpen: true }),
+        openModal: (state, {payload: {title, type, impactIndex}}: PayloadAction<IModalMeta>) => ({ ...state, type, title, impactIndex, isOpen: true }),
         setAzimuit: (state, {payload: newAzimut}: PayloadAction<number>) => ({ ...state, azimut: newAzimut }),
         setDistance: (state, {payload: newDistance}: PayloadAction<number>) => ({ ...state, distance: newDistance }),
         closeModal: () => initialModal,
