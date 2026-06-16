@@ -17,8 +17,8 @@ export const MeasurementModal: HOC = () => {
             { isOpen && (
                 <div id="modal">
                     <div>{title}</div>
-                    <div><input value={azimut} onChange={(e) => dispatch(modalSlice.actions.setAzimuit(Number(e.target.value)))} /></div>
-                    <div><input value={distance} onChange={(e) => dispatch(modalSlice.actions.setDistance(Number(e.target.value)))} /></div>
+                    <div><label>Azimut</label><input value={azimut} onChange={(e) => dispatch(modalSlice.actions.setAzimuit(Number(e.target.value)))} /></div>
+                    <div><label>Distance</label><input value={distance} onChange={(e) => dispatch(modalSlice.actions.setDistance(Number(e.target.value)))} /></div>
                     <button onClick={() => confirmMeasurement(type, { azimut, distance })}>Confirm</button>
                     <button onClick={() => dispatch(modalSlice.actions.closeModal())}>Cancel</button>
                 </div>

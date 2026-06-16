@@ -3,11 +3,28 @@
 }
 
 .item {
-  width: 120px;
-  height: 120px;
+  width: 180px;
+  min-height: 210px;
   border: 1px solid grey;
   border-radius: 3px;
   position: absolute;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.item-icon {
+  width: 72px;
+  height: 72px;
+  fill: none;
+  stroke: #222;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  margin-bottom: 8px;
+}
+
+.item-icon-cutout {
+  fill: white;
 }
 
 #arty {
