@@ -27,6 +27,12 @@
   fill: white;
 }
 
+.item-actions {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
 #arty {
   top: 85%;
   left: 45%;
@@ -59,6 +65,33 @@
 
 .impact .item-icon {
   stroke: #6f341f;
+}
+
+.clear-impact-button {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #8b6d5d;
+  border-radius: 4px;
+  background: #fff7ef;
+  color: #5a2b1c;
+  cursor: pointer;
+}
+
+.clear-impact-button:hover {
+  background: #efe4d5;
+}
+
+.clear-impact-button svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .clear-impacts-button {

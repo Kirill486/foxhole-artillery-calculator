@@ -56,6 +56,8 @@ export const ItemComponent: FC<IMeasurementProps> = ({
     iconId = itemId,
     label = itemId,
     className = "",
+    details = [],
+    actions,
     azimut,
     distance,
     onClick,
@@ -69,6 +71,7 @@ export const ItemComponent: FC<IMeasurementProps> = ({
             id={itemId}
             onClick={onClick}
         >
+            {actions && <div className="item-actions">{actions}</div>}
             <ItemIcon itemId={iconId} />
             <div>Target: {label}</div>
             {showMeasurement && (<div>Azimut: {azimut.toFixed(1)}</div>)}
@@ -81,6 +84,9 @@ export const ItemComponent: FC<IMeasurementProps> = ({
                     <div>dy: {dy.toFixed(1)}</div>
                 </>
             )}
+            {details.map(({label, value}) => (
+                <div key={label}>{label}: {value}</div>
+            ))}
         </div>
     );
 };
