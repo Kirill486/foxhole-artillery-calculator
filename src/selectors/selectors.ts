@@ -14,52 +14,52 @@ const dergreesToRadians = (degrees: number): number => {
 
 export const projectOnAxis = ({azimut, distance}: IMeasurement): IProjectionOnAxis => {
     const azimutToRad = dergreesToRadians(azimut);
-    const dx = distance * Math.cos(azimutToRad);
-    const dy = distance * Math.sin(azimutToRad);
+    const dx = distance * Math.sin(azimutToRad);
+    const dy = distance * Math.cos(azimutToRad);
     return {
         dx,
         dy,
     }
 };
 
-export const selectDirectionOnTarget: Selector<IMeasurement> = ({arty, target, impacts}) => {
-    const {dx: dxArty, dy: dyArty} = projectOnAxis(arty);
-    const {dx: dxTarget, dy: dyTarget} = projectOnAxis(target);
+const norm360 = (deg: number) => ((deg % 360) + 360) % 360;
 
-    let dx = 0;
-    let dy = 0;
+export const selectDirectionOnTarget: Selector<IMeasurement> = ({ arty, target, impacts }) => {
+  const { dx: dxArty, dy: dyArty } = projectOnAxis(arty);
+  const { dx: dxTarget, dy: dyTarget } = projectOnAxis(target);
 
-    const areThereImpacts = !!impacts.length;
+  const areThereImpacts = impacts.length > 0;
 
-    if (!areThereImpacts) {
-        dx = dxTarget;
-        dy = dyTarget;
-    } else {
-        const impactsProjections = impacts.map(projectOnAxis);
+  let dx: number;
+  let dy: number;
 
-        let dxSumm = 0;
-        let dySumm = 0;
-    
-        impactsProjections.forEach(({ dx, dy }) => {
-            dxSumm += dx;
-            dySumm += dy;
-        });
+  if (!areThereImpacts) {
+    dx = dxTarget;
+    dy = dyTarget;
+  } else {
+    const impactsProjections = impacts.map(projectOnAxis);
 
-        dx = dxSumm / impactsProjections.length;
-        dy = dySumm / impactsProjections.length;
-    }
+    let dxSumm = 0;
+    let dySumm = 0;
 
-    const dxResult = dx - dxArty;
-    const dyResult = dy - dyArty;
+    impactsProjections.forEach(p => {
+      dxSumm += p.dx;
+      dySumm += p.dy;
+    });
 
-    const azimutTg = dxResult / dyResult;
-    const azimutRad = Math.atan(azimutTg);
+    dx = dxSumm / impactsProjections.length;
+    dy = dySumm / impactsProjections.length;
+  }
 
-    const distance = Math.sqrt((dx * dx) + (dy * dy)); 
-    const azimut = radianToDegrees(azimutRad);
+  // vector from arty -> (target or avg impact)
+  const dxResult = dx - dxArty;
+  const dyResult = dy - dyArty;
 
-    return {
-        azimut,
-        distance,
-    }
-}
+  // 0° = North, clockwise
+  const azimutRad = Math.atan2(dxResult, dyResult);
+
+  const distance = Math.hypot(dxResult, dyResult);
+  const azimut = norm360(radianToDegrees(azimutRad));
+
+  return { azimut, distance };
+};
