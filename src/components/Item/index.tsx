@@ -71,22 +71,25 @@ export const ItemComponent: FC<IMeasurementProps> = ({
             id={itemId}
             onClick={onClick}
         >
-            {actions && <div className="item-actions">{actions}</div>}
-            <ItemIcon itemId={iconId} />
-            <div>Target: {label}</div>
-            {showMeasurement && (<div>Azimut: {azimut.toFixed(1)}</div>)}
-            {showMeasurement && <div>Distance: {distance.toFixed(1)}</div>}
+            <div className="item-header">
+                <div className="item-title">{label}</div>
+                {actions && <div className="item-actions">{actions}</div>}
+            </div>
+            <div className="item-body">
+                <ItemIcon itemId={iconId} />
+                {showMeasurement && (<div>Azimut: {azimut.toFixed(1)}</div>)}
+                {showMeasurement && <div>Distance: {distance.toFixed(1)}</div>}
 
-            {showProjection && (
-                <>
-                    --------------------
-                    <div>dx: {dx.toFixed(1)}</div>
-                    <div>dy: {dy.toFixed(1)}</div>
-                </>
-            )}
-            {details.map(({label, value}) => (
-                <div key={label}>{label}: {value}</div>
-            ))}
+                {showProjection && (
+                    <div className="item-projection">
+                        <div>dx: {dx.toFixed(1)}</div>
+                        <div>dy: {dy.toFixed(1)}</div>
+                    </div>
+                )}
+                {details.map(({label, value}) => (
+                    <div key={label}>{label}: {value}</div>
+                ))}
+            </div>
         </div>
     );
 };
