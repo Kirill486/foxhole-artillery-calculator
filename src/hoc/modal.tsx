@@ -15,12 +15,32 @@ export const MeasurementModal: HOC = () => {
     return (
         <>
             { isOpen && (
-                <div id="modal">
-                    <div>{title}</div>
-                    <div><label>Azimut</label><input value={azimut} onChange={(e) => dispatch(modalSlice.actions.setAzimuit(Number(e.target.value)))} /></div>
-                    <div><label>Distance</label><input value={distance} onChange={(e) => dispatch(modalSlice.actions.setDistance(Number(e.target.value)))} /></div>
-                    <button onClick={() => confirmMeasurement(type, { azimut, distance })}>Confirm</button>
-                    <button onClick={() => dispatch(modalSlice.actions.closeModal())}>Cancel</button>
+                <div id="modal" role="presentation">
+                    <div className="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+                        <div id="modal-title" className="modal-title">{title}</div>
+                        <div className="modal-field">
+                            <label htmlFor="modal-azimut">Azimut</label>
+                            <input
+                                id="modal-azimut"
+                                type="number"
+                                value={azimut}
+                                onChange={(e) => dispatch(modalSlice.actions.setAzimuit(Number(e.target.value)))}
+                            />
+                        </div>
+                        <div className="modal-field">
+                            <label htmlFor="modal-distance">Distance</label>
+                            <input
+                                id="modal-distance"
+                                type="number"
+                                value={distance}
+                                onChange={(e) => dispatch(modalSlice.actions.setDistance(Number(e.target.value)))}
+                            />
+                        </div>
+                        <div className="modal-actions">
+                            <button className="modal-button secondary" onClick={() => dispatch(modalSlice.actions.closeModal())}>Cancel</button>
+                            <button className="modal-button primary" onClick={() => confirmMeasurement(type, { azimut, distance })}>Confirm</button>
+                        </div>
+                    </div>
                 </div>
             ) }
         </>
