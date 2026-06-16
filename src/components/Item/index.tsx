@@ -48,9 +48,10 @@ export const ItemComponent: FC<IMeasurementProps> = ({
     azimut,
     distance,
     onClick,
+    showMeasurement = true,
+    showProjection = true,
 }) => {
     const { dx, dy } = projectOnAxis({azimut, distance});
-    const isDefined = !!azimut && !!distance;
     return (
         <div
             className="item clickable"
@@ -59,12 +60,16 @@ export const ItemComponent: FC<IMeasurementProps> = ({
         >
             <ItemIcon itemId={itemId} />
             <div>Target: {itemId}</div>
-            {isDefined && (<div>Azimut: {azimut}</div>)}
-            {isDefined && <div>Distance: {distance}</div>}
+            {showMeasurement && (<div>Azimut: {azimut.toFixed(1)}</div>)}
+            {showMeasurement && <div>Distance: {distance.toFixed(1)}</div>}
 
-            --------------------
-            <div>dx: {dx.toFixed(1)}</div>
-            <div>dy: {dy.toFixed(1)}</div>
+            {showProjection && (
+                <>
+                    --------------------
+                    <div>dx: {dx.toFixed(1)}</div>
+                    <div>dy: {dy.toFixed(1)}</div>
+                </>
+            )}
         </div>
     );
 };

@@ -24,6 +24,12 @@ export const projectOnAxis = ({azimut, distance}: IMeasurement): IProjectionOnAx
 
 const norm360 = (deg: number) => ((deg % 360) + 360) % 360;
 
+export const isMeasurementSet = ({ distance }: IMeasurement) => distance !== 0;
+
+export const selectHasArtyAndTargetMeasurements: Selector<boolean> = ({ arty, target }) => (
+  isMeasurementSet(arty) && isMeasurementSet(target)
+);
+
 export const selectDirectionOnTarget: Selector<IMeasurement> = ({ arty, target, impacts }) => {
   const { dx: dxArty, dy: dyArty } = projectOnAxis(arty);
   const { dx: dxTarget, dy: dyTarget } = projectOnAxis(target);
